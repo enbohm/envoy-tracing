@@ -45,7 +45,7 @@ static_resources:
                   authorization_request:
                     allowed_headers:
                       patterns:
-                        prefix: "x-*"
+                        prefix: "x-b3"
 
             - name: envoy.router
               config: {}
