@@ -12,7 +12,7 @@ To send a request execute
 
 Open a browser and type http://127.0.0.1:16686 (Jeager UI)
 
-Notice that the front-proxy and my-service is part of the same trace. The external auth-service is not (but shows up as a standalone service)
+Notice that the front-proxy and my-service is part of the same trace. The external auth-service is not (but shows up as a standalone service see [JaegerUI](jaeger-service.png)
 
 Also notice that the curl-command prints headers, INCL. b3-trace headers. The log output from the auth-service does not print these
-headers since they are not propagated to the exteral auth-service.
+headers since they are not propagated to the exteral auth-service see [screenshot](auth-service-logs.png)
