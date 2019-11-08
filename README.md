@@ -1,5 +1,5 @@
-# Envoy Showcase fro Tracing Issue 6520
-Showcase for the issue (b3-headers not propagated to external auth service) https://github.com/envoyproxy/envoy/issues/6520
+# Envoy Tracing Issue 6520
+Example of the issue (b3-headers not propagated to external auth service) https://github.com/envoyproxy/envoy/issues/6520
 
 To run you must have Docker installed. This repo contains the resources to setup Envoy proxy infront of a service (my-service) and 
 an external authotization service (auth-service, see https://github.com/enbohm/authz-service)
