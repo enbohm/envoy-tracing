@@ -1,7 +1,8 @@
 tracing:
   http:
     name: envoy.zipkin
-    config:
+    typed_config:
+      "@type": type.googleapis.com/envoy.config.trace.v2.ZipkinConfig
       collector_cluster: jaeger
       collector_endpoint: "/api/v1/spans"
       shared_span_context: true
@@ -18,6 +19,8 @@ static_resources:
         config:
           codec_type: auto
           stat_prefix: ingress_http
+          tracing:
+            operation_name: egress
           route_config:
             name: local_route
             virtual_hosts:
@@ -42,7 +45,7 @@ static_resources:
                   authorization_request:
                     allowed_headers:
                       patterns:
-                        prefix: "x-b3"
+                        prefix: "x-*"
 
             - name: envoy.router
               config: {}
@@ -68,4 +71,4 @@ static_resources:
     type: LOGICAL_DNS
     dns_lookup_family: V4_ONLY
     lb_policy: ROUND_ROBIN
-    hosts: [{ socket_address: { address: jaeger-service, port_value: 8080 }}]
+    hosts: [{ socket_address: { address: jaeger, port_value: 9411 }}]
