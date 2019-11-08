@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  envoy-tracing:
+    image: enbohm/envoy-tracing
+    networks:
+      envoymesh:
+        aliases:
+          - my-service
+   
+  auth-service:
+    image: enbohm/auth-service
+    networks:
+      envoymesh:
+        aliases:
+          - auth-service
+  envoy:
+    build:
+      context: .
+      dockerfile: Dockerfile-frontenvoy
+    networks:
+      - envoymesh
+    volumes:
+      - ./envoy.yml:/etc/front-envoy.yaml
+    ports:
+      - "8080:80"
+networks:
+  envoymesh: {}
